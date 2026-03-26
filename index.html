@@ -30,7 +30,6 @@
     </div>
     <div id="t2av-menu" class="navbar-menu">
       <div class="navbar-end">
-        <a class="navbar-item" href="#why">Why AVBench</a>
         <a class="navbar-item" href="#overview">Overview</a>
         <a class="navbar-item" href="#contributions">Contributions</a>
         <a class="navbar-item" href="#suite">Evaluation Suite</a>
@@ -71,33 +70,6 @@
   </div>
 </section>
 
-<section id="why" class="section section-overview">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title">Why AVBench</h2>
-    <p class="section-note">Current AV-generation evaluation has three practical gaps that AVBench directly addresses.</p>
-    <div class="columns is-multiline pain-grid">
-      <div class="column is-4">
-        <article class="pain-card">
-          <h3>Gap 1: Coarse Evaluation</h3>
-          <p>Existing benchmarks often miss fine-grained human-centric errors in speech, emotion, and interaction consistency.</p>
-        </article>
-      </div>
-      <div class="column is-4">
-        <article class="pain-card">
-          <h3>Gap 2: Generic Evaluators</h3>
-          <p>Off-the-shelf models capture broad semantics but fail to detect subtle cross-modal misalignment.</p>
-        </article>
-      </div>
-      <div class="column is-4">
-        <article class="pain-card">
-          <h3>Gap 3: Discrete Scores</h3>
-          <p>Binary or textual judgments are hard to optimize against; AVBench provides continuous confidence-based signals.</p>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="section section-figure">
   <div class="container is-max-desktop">
     <img class="paper-figure" src="./static/images/avbench/teaser-eccv3.png" alt="AVBench teaser figure">
@@ -110,27 +82,27 @@
 
 <section id="figures" class="section section-dimensions">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title">Paper Figures</h2>
-    <p class="section-note">Overview figures directly adapted from the paper layout.</p>
+    <h2 class="title is-3 section-title">Benchmark Construction and Analysis Overview</h2>
+    <p class="section-note">Key visual summaries adapted from the paper to explain data curation, evaluator design, and model-level performance patterns.</p>
 
     <div class="paper-figure-block">
       <img class="paper-figure" src="./static/images/avbench/pipline-eccv3.png" alt="Pipeline overview">
-      <p class="figure-caption"><strong>Figure 2.</strong> Overview of the AVBench construction pipeline, including evaluator training and benchmark prompt curation.</p>
+      <p class="figure-caption"><strong>Figure 2.</strong> End-to-end AVBench construction pipeline. The upper branch builds specialized evaluators from human-centric real clips through dense annotation and hard-negative generation for SFT; the lower branch curates benchmark prompts with strict quality control and split design, forming a scalable and fully automated evaluation workflow.</p>
     </div>
 
     <div class="paper-figure-block">
       <img class="paper-figure" src="./static/images/avbench/dataset_donut.png" alt="Data distribution normal hard">
-      <p class="figure-caption"><strong>Figure 3.</strong> Data distribution of AVBench normal and hard subsets across language, speakers, interaction complexity, emotion, and shot type.</p>
+      <p class="figure-caption"><strong>Figure 3.</strong> Distribution analysis of AVBench Normal and Hard subsets. The chart highlights balanced coverage over language, number of speakers, interaction complexity, emotional expression, and camera-shot composition, while Hard split deliberately increases challenging combinations to stress robustness under realistic high-difficulty scenarios.</p>
     </div>
 
     <div class="paper-figure-block">
       <img class="paper-figure" src="./static/images/avbench/bench_dimensions.png" alt="Hard negative taxonomy">
-      <p class="figure-caption"><strong>Figure 4.</strong> Taxonomy of multi-dimensional hard negatives for AV, AT, and VT alignment robustness.</p>
+      <p class="figure-caption"><strong>Figure 4.</strong> Taxonomy of multi-dimensional hard negatives used for evaluator training. The perturbation space explicitly targets AV, AT, and VT failure modes, including temporal shifts, semantic mutations, and perceptual inconsistencies, enabling evaluators to detect subtle misalignments that generic zero-shot metrics often miss.</p>
     </div>
 
     <div class="paper-figure-block">
       <img class="paper-figure" src="./static/images/avbench/radar_chart.png" alt="Radar chart of model performance">
-      <p class="figure-caption"><strong>Figure 5.</strong> Radar comparison of representative T2AV models across AVBench key dimensions.</p>
+      <p class="figure-caption"><strong>Figure 5.</strong> Radar comparison of representative T2AV systems under AVBench. Results show clear trade-offs: some models lead in technical quality and aesthetics, while cross-modal instruction fidelity, especially AT and VT consistency in hard scenarios, remains a dominant bottleneck across methods.</p>
     </div>
   </div>
 </section>
@@ -214,21 +186,19 @@
 <section id="suite" class="section section-overview">
   <div class="container is-max-desktop">
     <h2 class="title is-3 section-title">Comprehensive Evaluation Suite</h2>
-    <p class="section-note">AVBench evaluates the following 10 dimensions:</p>
-    <article class="dimension-card">
-      <ul>
-        <li>AV Consistency</li>
-        <li>AT Consistency</li>
-        <li>VT Consistency</li>
-        <li>Lip Sync Consistency</li>
-        <li>Speech Content Accuracy</li>
-        <li>Speech Realism</li>
-        <li>Audio Quality (NISQA)</li>
-        <li>Audio Aesthetics (Audiobox)</li>
-        <li>Video Quality (DOVER++)</li>
-        <li>Video Aesthetics</li>
-      </ul>
-    </article>
+    <p class="section-note">AVBench evaluates 10 dimensions. Each dimension is paired with a concrete evaluation method for reproducible scoring.</p>
+    <div class="suite-grid">
+      <article class="suite-card"><h3>AV Consistency</h3><p>Specialized SFT AV evaluator estimates audio-video semantic and temporal alignment via confidence-normalized Yes/No scoring.</p></article>
+      <article class="suite-card"><h3>AT Consistency</h3><p>Specialized SFT AT evaluator measures whether generated audio faithfully matches prompt semantics and intent.</p></article>
+      <article class="suite-card"><h3>VT Consistency</h3><p>Specialized SFT VT evaluator checks visual adherence to textual instructions under fine-grained human-centric conditions.</p></article>
+      <article class="suite-card"><h3>Lip Sync Consistency</h3><p>SyncNet-based alignment confidence and temporal offset analysis quantify speech-mouth synchronization fidelity.</p></article>
+      <article class="suite-card"><h3>Speech Content Accuracy</h3><p>Whisper transcription with completeness, lexical accuracy, and hallucination penalty composes final speech-content score.</p></article>
+      <article class="suite-card"><h3>Speech Realism</h3><p>DF-Arena discriminator evaluates naturalness and authenticity of synthesized voices against real human speech priors.</p></article>
+      <article class="suite-card"><h3>Audio Quality (NISQA)</h3><p>NISQAv2 MOS prediction provides perceptual audio-quality estimation across speech and environmental sounds.</p></article>
+      <article class="suite-card"><h3>Audio Aesthetics (Audiobox)</h3><p>Audiobox aesthetic sub-scores are aggregated to reflect production quality, usefulness, and listening experience.</p></article>
+      <article class="suite-card"><h3>Video Quality (DOVER++)</h3><p>DOVER++ evaluates technical visual fidelity and structural stability from a multi-perspective quality assessment view.</p></article>
+      <article class="suite-card"><h3>Video Aesthetics</h3><p>LAION-based aesthetic predictor scores overall visual composition and high-level perceptual appeal.</p></article>
+    </div>
   </div>
 </section>
 
@@ -236,15 +206,6 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 section-title">Main Results</h2>
     <p class="section-note">Quantitative results on AVBench Normal and Hard splits.</p>
-
-    <div class="takeaway-box">
-      <h3>Key Findings</h3>
-      <ul class="takeaway-list">
-        <li>AT and VT consistency remain the dominant bottlenecks across all evaluated T2AV models.</li>
-        <li>Some models excel in technical quality or aesthetics, but still underperform on semantic instruction fidelity.</li>
-        <li>Performance drops in the Hard split show robustness gaps in complex human-centric scenarios.</li>
-      </ul>
-    </div>
 
     <h3 class="title is-5 split-title">Normal Split</h3>
     <div class="table-wrap">

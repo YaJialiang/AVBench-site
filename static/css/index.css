@@ -251,6 +251,32 @@ li {
   margin-top: 1.15rem;
 }
 
+.suite-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.suite-card {
+  background: linear-gradient(165deg, #ffffff 0%, #f4faf7 100%);
+  border: 1px solid #cfe0d7;
+  border-radius: 0.95rem;
+  padding: 0.9rem 0.95rem;
+  box-shadow: 0 8px 24px rgba(21, 33, 27, 0.08);
+}
+
+.suite-card h3 {
+  color: #18483b;
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+
+.suite-card p {
+  margin: 0;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
 .fig-row {
   margin-top: 1.4rem;
 }
@@ -290,6 +316,10 @@ li {
 
   .project-subtitle {
     font-size: 1rem;
+  }
+
+  .suite-grid {
+    grid-template-columns: 1fr;
   }
 
 }
