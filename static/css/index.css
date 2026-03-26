@@ -257,6 +257,23 @@ li {
   gap: 0.9rem;
 }
 
+.suite-cluster + .suite-cluster {
+  margin-top: 1.1rem;
+}
+
+.suite-group-title {
+  display: inline-block;
+  font-weight: 700;
+  color: #0f4f42;
+  background: #e3f1eb;
+  border: 1px solid #c8ddd2;
+  border-radius: 999px;
+  padding: 0.28rem 0.75rem;
+  margin-bottom: 0.7rem;
+  font-size: 0.88rem;
+  letter-spacing: 0.01em;
+}
+
 .suite-card {
   background: linear-gradient(165deg, #ffffff 0%, #f4faf7 100%);
   border: 1px solid #cfe0d7;
@@ -265,9 +282,30 @@ li {
   box-shadow: 0 8px 24px rgba(21, 33, 27, 0.08);
 }
 
+.suite-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.28rem;
+}
+
+.suite-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 999px;
+  background: #123f35;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
 .suite-card h3 {
   color: #18483b;
-  margin-bottom: 0.25rem;
+  margin: 0;
   font-size: 1rem;
 }
 
@@ -275,6 +313,17 @@ li {
   margin: 0;
   font-size: 0.94rem;
   line-height: 1.6;
+}
+
+.suite-method {
+  display: inline-block;
+  margin-top: 0.55rem;
+  font-size: 0.78rem;
+  color: #1c5a4a;
+  background: #eaf5f0;
+  border: 1px solid #d4e6dd;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.46rem;
 }
 
 .fig-row {
