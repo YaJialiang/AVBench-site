@@ -74,8 +74,10 @@
   <div class="container is-max-desktop">
     <img class="paper-figure" src="./static/images/avbench/teaser-eccv3.png" alt="AVBench teaser figure">
     <p class="figure-caption">
-      Figure 1. AVBench evaluates cross-modal consistency, speech-related attributes, and unimodal quality,
-      enabling robust diagnosis in realistic human-centric generation scenarios.
+      <strong>Figure 1.</strong> <strong>Overview of our AVBench.</strong> It integrates a multi-dimensional evaluation suite
+      covering cross-modal consistency, audio metrics, and video metrics for human-centered real-world scenarios,
+      together with a hierarchical AV prompt design containing normal and hard subsets. The framework supports
+      automated large-scale assessment and human preference-based alignment verification to ensure reliable perceptual alignment.
     </p>
   </div>
 </section>
@@ -87,22 +89,34 @@
 
     <div class="paper-figure-block">
       <img class="paper-figure" src="./static/images/avbench/pipline-eccv3.png" alt="Pipeline overview">
-      <p class="figure-caption"><strong>Figure 2.</strong> End-to-end AVBench construction pipeline. The upper branch builds specialized evaluators from human-centric real clips through dense annotation and hard-negative generation for SFT; the lower branch curates benchmark prompts with strict quality control and split design, forming a scalable and fully automated evaluation workflow.</p>
+      <p class="figure-caption"><strong>Figure 2.</strong> <strong>Overview of the AVBench construction pipeline.</strong>
+      Our framework comprises two parallel workflows. The upper branch illustrates the training of the automated evaluators:
+      clips are densely annotated and then branched into positive and hard-negative samples for SFT.
+      The lower branch outlines benchmark prompt curation via heuristic sampling and strict filtering.
+      Together, robust SFT evaluators and high-quality prompts form a fully automated evaluation framework.</p>
     </div>
 
     <div class="paper-figure-block">
       <img class="paper-figure" src="./static/images/avbench/dataset_donut.png" alt="Data distribution normal hard">
-      <p class="figure-caption"><strong>Figure 3.</strong> Distribution analysis of AVBench Normal and Hard subsets. The chart highlights balanced coverage over language, number of speakers, interaction complexity, emotional expression, and camera-shot composition, while Hard split deliberately increases challenging combinations to stress robustness under realistic high-difficulty scenarios.</p>
+      <p class="figure-caption"><strong>Figure 3.</strong> <strong>Data distribution of AVBench's normal and hard subsets.</strong>
+      The multi-layer chart illustrates dataset diversity over key human-centric attributes including language,
+      number of speakers, interaction complexity, emotional expression, and camera shot type.
+      The hard subset contains a higher ratio of challenging scenarios to rigorously test fine-grained cross-modal alignment.</p>
     </div>
 
     <div class="paper-figure-block">
       <img class="paper-figure" src="./static/images/avbench/bench_dimensions.png" alt="Hard negative taxonomy">
-      <p class="figure-caption"><strong>Figure 4.</strong> Taxonomy of multi-dimensional hard negatives used for evaluator training. The perturbation space explicitly targets AV, AT, and VT failure modes, including temporal shifts, semantic mutations, and perceptual inconsistencies, enabling evaluators to detect subtle misalignments that generic zero-shot metrics often miss.</p>
+      <p class="figure-caption"><strong>Figure 4.</strong> <strong>Taxonomy of multi-dimensional hard negatives in AVBench.</strong>
+      The chart shows the comprehensive distribution of constructed negatives across major alignment axes.
+      Rather than random perturbations, these dimensions are explicitly designed to target common T2AV failure modes,
+      ensuring robust and fine-grained evaluation of cross-modal consistency.</p>
     </div>
 
     <div class="paper-figure-block">
       <img class="paper-figure" src="./static/images/avbench/radar_chart.png" alt="Radar chart of model performance">
-      <p class="figure-caption"><strong>Figure 5.</strong> Radar comparison of representative T2AV systems under AVBench. Results show clear trade-offs: some models lead in technical quality and aesthetics, while cross-modal instruction fidelity, especially AT and VT consistency in hard scenarios, remains a dominant bottleneck across methods.</p>
+      <p class="figure-caption"><strong>Figure 5.</strong> <strong>Holistic model performance.</strong>
+      Radar comparison across AVBench dimensions reveals complementary strengths and weaknesses among representative T2AV systems,
+      highlighting the persistent gap between technical quality and strict cross-modal instruction fidelity.</p>
     </div>
   </div>
 </section>
@@ -114,18 +128,21 @@
         <h2 class="title is-3 section-title">Abstract</h2>
         <p>
           Rapid advances in audio-video (AV) generation have enabled high-fidelity synthesis with synchronized sound,
-          particularly for human-related scenarios involving speech and interactions. Yet evaluation for AV generation
-          remains at an early stage, with only a few coarse-grained benchmarks for human-related scenarios and limited
-          preset evaluations with generic multimodal LLMs, often leading to inaccurate assessment of model capabilities.
-          AVBench is a fully automated benchmark tailored for human-centric AV generation and built on two key designs:
-          human-centric fine-grained metrics and specialized evaluators via preference-oriented training.
+          particularly for human-related scenarios involving speech and interactions.
+          Yet evaluation for AV generation remains at an early stage, with only a few coarse-grained benchmarks for human-related scenarios and relying on limited preset evaluations with generic multimodal LLMs, leading to inaccurate assessments of model capabilities.
+          To address these issues, we introduce AVBench, a fully automated benchmark tailored for human-centric AV generation.
+          AVBench is built on two key designs for comprehensive and accurate evaluation:
+          (i) <strong>Human-centric and fine-grained metrics.</strong> AVBench integrates ten evaluation dimensions designed for human-centered real-world scenarios, covering visual quality, audio quality, and multi-level consistency across modalities.
+          These practical metrics capture human-related details that existing benchmarks often overlook.
         </p>
         <p>
-          AVBench integrates ten evaluation dimensions that cover visual quality, audio quality, and multi-level
-          cross-modal consistency. To train evaluators that can detect subtle mismatches, AVBench constructs large-scale
-          supervision by transforming real-world clips into diverse positive/negative pairs with controlled perturbations.
-          Instead of discrete textual judgments, AVBench derives continuous scores from model confidence on binary decisions,
-          yielding reliable automated evaluation and strong potential for data filtering and reward modeling.
+          (ii) <strong>Specialized evaluators via preference learning.</strong>
+          To address the lack of specialized training data, we construct large-scale supervision by transforming real-world videos into diverse training pairs with controlled perturbations.
+          After fine-tuning on this high-quality dataset, the evaluators learn to reliably detect subtle cross-modal inconsistencies.
+          Crucially, instead of producing discrete textual judgment, AVBench derives continuous evaluation scores from the model's prediction confidence on binary decisions.
+          This probabilistic scoring mechanism enables a more reliable assessment than traditional VQA-style evaluation and aligns closely with human judgment.
+          Taken together, AVBench offers automated evaluation for AV generation, demonstrates strong potential for data filtering and serving as a differentiable reward signal for Reinforcement Learning from Human Feedback (RLHF).
+          Code, data, and models will be released.
         </p>
       </div>
       <div class="column is-4">
@@ -187,17 +204,66 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 section-title">Comprehensive Evaluation Suite</h2>
     <p class="section-note">AVBench evaluates 10 dimensions. Each dimension is paired with a concrete evaluation method for reproducible scoring.</p>
-    <div class="suite-grid">
-      <article class="suite-card"><h3>AV Consistency</h3><p>Specialized SFT AV evaluator estimates audio-video semantic and temporal alignment via confidence-normalized Yes/No scoring.</p></article>
-      <article class="suite-card"><h3>AT Consistency</h3><p>Specialized SFT AT evaluator measures whether generated audio faithfully matches prompt semantics and intent.</p></article>
-      <article class="suite-card"><h3>VT Consistency</h3><p>Specialized SFT VT evaluator checks visual adherence to textual instructions under fine-grained human-centric conditions.</p></article>
-      <article class="suite-card"><h3>Lip Sync Consistency</h3><p>SyncNet-based alignment confidence and temporal offset analysis quantify speech-mouth synchronization fidelity.</p></article>
-      <article class="suite-card"><h3>Speech Content Accuracy</h3><p>Whisper transcription with completeness, lexical accuracy, and hallucination penalty composes final speech-content score.</p></article>
-      <article class="suite-card"><h3>Speech Realism</h3><p>DF-Arena discriminator evaluates naturalness and authenticity of synthesized voices against real human speech priors.</p></article>
-      <article class="suite-card"><h3>Audio Quality (NISQA)</h3><p>NISQAv2 MOS prediction provides perceptual audio-quality estimation across speech and environmental sounds.</p></article>
-      <article class="suite-card"><h3>Audio Aesthetics (Audiobox)</h3><p>Audiobox aesthetic sub-scores are aggregated to reflect production quality, usefulness, and listening experience.</p></article>
-      <article class="suite-card"><h3>Video Quality (DOVER++)</h3><p>DOVER++ evaluates technical visual fidelity and structural stability from a multi-perspective quality assessment view.</p></article>
-      <article class="suite-card"><h3>Video Aesthetics</h3><p>LAION-based aesthetic predictor scores overall visual composition and high-level perceptual appeal.</p></article>
+    <div class="suite-cluster">
+      <div class="suite-group-title">Cross-Modal Alignment and Synchronization</div>
+      <div class="suite-grid">
+        <article class="suite-card">
+          <div class="suite-head"><span class="suite-badge">01</span><h3>AV Consistency</h3></div>
+          <p>Specialized SFT AV evaluator estimates audio-video semantic and temporal alignment via confidence-normalized Yes/No scoring.</p>
+          <span class="suite-method">Method: SFT AV Evaluator</span>
+        </article>
+        <article class="suite-card">
+          <div class="suite-head"><span class="suite-badge">02</span><h3>AT Consistency</h3></div>
+          <p>Specialized SFT AT evaluator measures whether generated audio faithfully matches prompt semantics and intent.</p>
+          <span class="suite-method">Method: SFT AT Evaluator</span>
+        </article>
+        <article class="suite-card">
+          <div class="suite-head"><span class="suite-badge">03</span><h3>VT Consistency</h3></div>
+          <p>Specialized SFT VT evaluator checks visual adherence to textual instructions under fine-grained human-centric conditions.</p>
+          <span class="suite-method">Method: SFT VT Evaluator</span>
+        </article>
+        <article class="suite-card">
+          <div class="suite-head"><span class="suite-badge">04</span><h3>Lip Sync Consistency</h3></div>
+          <p>SyncNet-based alignment confidence and temporal offset analysis quantify speech-mouth synchronization fidelity.</p>
+          <span class="suite-method">Method: SyncNet / LatentSync</span>
+        </article>
+      </div>
+    </div>
+
+    <div class="suite-cluster">
+      <div class="suite-group-title">Unimodal Generation Quality</div>
+      <div class="suite-grid">
+        <article class="suite-card">
+          <div class="suite-head"><span class="suite-badge">05</span><h3>Speech Content Accuracy</h3></div>
+          <p>Whisper transcription with completeness, lexical accuracy, and hallucination penalty composes final speech-content score.</p>
+          <span class="suite-method">Method: Whisper-based Scoring</span>
+        </article>
+        <article class="suite-card">
+          <div class="suite-head"><span class="suite-badge">06</span><h3>Speech Realism</h3></div>
+          <p>DF-Arena discriminator evaluates naturalness and authenticity of synthesized voices against real human speech priors.</p>
+          <span class="suite-method">Method: DF-Arena Discriminator</span>
+        </article>
+        <article class="suite-card">
+          <div class="suite-head"><span class="suite-badge">07</span><h3>Audio Quality (NISQA)</h3></div>
+          <p>NISQAv2 MOS prediction provides perceptual audio-quality estimation across speech and environmental sounds.</p>
+          <span class="suite-method">Method: NISQAv2 MOS</span>
+        </article>
+        <article class="suite-card">
+          <div class="suite-head"><span class="suite-badge">08</span><h3>Audio Aesthetics (Audiobox)</h3></div>
+          <p>Audiobox aesthetic sub-scores are aggregated to reflect production quality, usefulness, and listening experience.</p>
+          <span class="suite-method">Method: Audiobox Aesthetics</span>
+        </article>
+        <article class="suite-card">
+          <div class="suite-head"><span class="suite-badge">09</span><h3>Video Quality (DOVER++)</h3></div>
+          <p>DOVER++ evaluates technical visual fidelity and structural stability from a multi-perspective quality assessment view.</p>
+          <span class="suite-method">Method: DOVER++</span>
+        </article>
+        <article class="suite-card">
+          <div class="suite-head"><span class="suite-badge">10</span><h3>Video Aesthetics</h3></div>
+          <p>LAION-based aesthetic predictor scores overall visual composition and high-level perceptual appeal.</p>
+          <span class="suite-method">Method: LAION Aesthetic Predictor</span>
+        </article>
+      </div>
     </div>
   </div>
 </section>
