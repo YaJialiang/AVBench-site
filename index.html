@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="description" content="AVBench: Human-Aligned and Automated Evaluation Benchmark for Audio-Video Generative Models.">
-  <meta name="keywords" content="AVBench, Audio-Video Generation, Benchmark, Human Alignment, ECCV 2026">
+  <meta name="keywords" content="AVBench, Audio-Video Generation, Benchmark, Human Alignment, Multimodal Evaluation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AVBench | Human-Aligned AV Evaluation Benchmark</title>
 
@@ -30,6 +30,7 @@
     </div>
     <div id="t2av-menu" class="navbar-menu">
       <div class="navbar-end">
+        <a class="navbar-item" href="#why">Why AVBench</a>
         <a class="navbar-item" href="#overview">Overview</a>
         <a class="navbar-item" href="#contributions">Contributions</a>
         <a class="navbar-item" href="#suite">Evaluation Suite</a>
@@ -44,18 +45,13 @@
 <section id="top" class="hero hero-project">
   <div class="hero-body">
     <div class="container is-max-desktop has-text-centered">
-      <!-- <p class="project-tag">ECCV 2026 Submission #430</p> -->
+      <p class="project-tag">Human-Aligned Automated Benchmark</p>
       <h1 class="title project-title">AVBench: Human-Aligned and Automated Evaluation Benchmark for Audio-Video Generative Models</h1>
       <p class="project-subtitle">
-        AVBench is a fully automated benchmark for human-centric text-to-audio-video generation.
-        It integrates ten fine-grained dimensions, specialized SFT evaluators, and continuous probabilistic scoring
-        that closely aligns with human perception.
+        AVBench targets the core bottleneck of modern T2AV systems: existing metrics miss subtle but critical
+        human-centric failures. We provide a fully automated, fine-grained, and human-aligned evaluation protocol
+        with specialized evaluators and continuous confidence scores.
       </p>
-
-      <!-- <div class="project-authors">
-        <span>Anonymous Authors</span>
-      </div>
-      <div class="project-org">Under Double-Blind Review</div> -->
 
       <div class="project-links">
         <a class="button is-dark is-rounded" href="https://github.com/Yajialiang/AVBench" target="_blank" rel="noopener noreferrer">
@@ -75,12 +71,39 @@
   </div>
 </section>
 
+<section id="why" class="section section-overview">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Why AVBench</h2>
+    <p class="section-note">Current AV-generation evaluation has three practical gaps that AVBench directly addresses.</p>
+    <div class="columns is-multiline pain-grid">
+      <div class="column is-4">
+        <article class="pain-card">
+          <h3>Gap 1: Coarse Evaluation</h3>
+          <p>Existing benchmarks often miss fine-grained human-centric errors in speech, emotion, and interaction consistency.</p>
+        </article>
+      </div>
+      <div class="column is-4">
+        <article class="pain-card">
+          <h3>Gap 2: Generic Evaluators</h3>
+          <p>Off-the-shelf models capture broad semantics but fail to detect subtle cross-modal misalignment.</p>
+        </article>
+      </div>
+      <div class="column is-4">
+        <article class="pain-card">
+          <h3>Gap 3: Discrete Scores</h3>
+          <p>Binary or textual judgments are hard to optimize against; AVBench provides continuous confidence-based signals.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section section-figure">
   <div class="container is-max-desktop">
     <img class="paper-figure" src="./static/images/avbench/teaser-eccv3.png" alt="AVBench teaser figure">
     <p class="figure-caption">
-      Figure 1. AVBench overview: a multi-dimensional suite for cross-modal consistency,
-      audio quality, and video quality in human-centric scenarios.
+      Figure 1. AVBench evaluates cross-modal consistency, speech-related attributes, and unimodal quality,
+      enabling robust diagnosis in realistic human-centric generation scenarios.
     </p>
   </div>
 </section>
@@ -124,13 +147,14 @@
       <div class="column is-8">
         <h2 class="title is-3 section-title">Abstract</h2>
         <p>
-          Rapid advances in audio-video generation have enabled high-fidelity synthesis with synchronized sound,
-          yet existing benchmarks remain coarse-grained and rely on generic evaluators. AVBench introduces a fully automated,
-          human-centric benchmark with fine-grained metrics and specialized evaluators trained via preference-oriented hard negatives.
+          Rapid advances in audio-video generation have produced high-fidelity outputs, but evaluation remains a bottleneck.
+          AVBench introduces a fully automated benchmark specialized for human-centric scenarios, with fine-grained metrics,
+          dedicated evaluators, and strong alignment with subjective human judgments.
         </p>
         <p>
-          Beyond binary judgments, AVBench outputs continuous confidence-based scores from Yes/No probabilities,
-          enabling more reliable assessment and opening opportunities for data filtering and reward modeling.
+          AVBench builds multi-dimensional hard negatives and trains specialized evaluators for AV/AT/VT consistency.
+          Instead of discrete labels, it outputs continuous confidence scores, which are useful for reliable ranking,
+          dataset filtering, and potential reward modeling.
         </p>
       </div>
       <div class="column is-4">
@@ -141,7 +165,7 @@
           </div>
           <div class="metric-item">
             <div class="metric-value">300K</div>
-            <div class="metric-name">SFT Training Samples</div>
+            <div class="metric-name">Hard-Negative SFT Pairs</div>
           </div>
           <div class="metric-item">
             <div class="metric-value">470</div>
@@ -159,28 +183,28 @@
     <div class="columns is-multiline">
       <div class="column is-4">
         <article class="dimension-card">
-          <h3>Human-Centric Metrics</h3>
+          <h3>Human-Centric, Fine-Grained Suite</h3>
           <p>
-            AVBench extends traditional metrics with fine-grained human-centric indicators,
-            covering cross-modal consistency, speech realism, and perceptual quality.
+            A 10-dimension protocol covers cross-modal alignment, speech content/realism,
+            and audio-video perceptual quality in realistic human scenes.
           </p>
         </article>
       </div>
       <div class="column is-4">
         <article class="dimension-card">
-          <h3>Specialized SFT Evaluators</h3>
+          <h3>Specialized Evaluators via SFT</h3>
           <p>
-            The benchmark trains dedicated AV, AT, and VT evaluators on hard-negative data,
-            then produces continuous differentiable confidence scores.
+            Dedicated AV/AT/VT evaluators are trained on large-scale hard negatives,
+            greatly improving sensitivity to subtle semantic and temporal mismatches.
           </p>
         </article>
       </div>
       <div class="column is-4">
         <article class="dimension-card">
-          <h3>Automated + Human Aligned</h3>
+          <h3>Automated and Human-Aligned</h3>
           <p>
-            A hierarchical Normal/Hard split evaluates robustness in realistic human scenarios,
-            with strong alignment to human preference judgments.
+            A Normal/Hard hierarchical split exposes robustness limits,
+            and evaluator outputs align well with human preference annotations.
           </p>
         </article>
       </div>
@@ -213,6 +237,15 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 section-title">Main Results</h2>
     <p class="section-note">Quantitative results on AVBench Normal and Hard splits.</p>
+
+    <div class="takeaway-box">
+      <h3>Key Findings</h3>
+      <ul class="takeaway-list">
+        <li>AT and VT consistency remain the dominant bottlenecks across all evaluated T2AV models.</li>
+        <li>Some models excel in technical quality or aesthetics, but still underperform on semantic instruction fidelity.</li>
+        <li>Performance drops in the Hard split show robustness gaps in complex human-centric scenarios.</li>
+      </ul>
+    </div>
 
     <h3 class="title is-5 split-title">Normal Split</h3>
     <div class="table-wrap">
@@ -277,7 +310,7 @@
     <h2 class="title is-3 section-title">Citation</h2>
 <pre><code>@inproceedings{avbench2026,
   title={AVBench: Human-Aligned and Automated Evaluation Benchmark for Audio-Video Generative Models},
-  booktitle={ECCV},
+  note={Preprint},
   year={2026}
 }</code></pre>
   </div>

@@ -157,6 +157,21 @@ li {
   color: #385045;
 }
 
+.pain-card {
+  height: 100%;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 1.1rem;
+  box-shadow: var(--shadow);
+}
+
+.pain-card h3 {
+  color: #123f35;
+  margin-bottom: 0.45rem;
+  font-size: 1.08rem;
+}
+
 .section-note {
   margin-bottom: 1rem;
 }
@@ -234,6 +249,24 @@ li {
 
 .fig-row {
   margin-top: 1.4rem;
+}
+
+.takeaway-box {
+  border: 1px solid #c9ddd2;
+  background: linear-gradient(155deg, #eef7f2 0%, #f8fcfa 100%);
+  border-radius: 1rem;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.takeaway-box h3 {
+  color: #1a4f42;
+  margin-bottom: 0.45rem;
+}
+
+.takeaway-list {
+  margin: 0;
+  padding-left: 1.1rem;
 }
 
 .project-footer {
