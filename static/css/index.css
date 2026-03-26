@@ -247,6 +247,10 @@ li {
   font-size: 0.95rem;
 }
 
+.paper-figure-block + .paper-figure-block {
+  margin-top: 1.15rem;
+}
+
 .fig-row {
   margin-top: 1.4rem;
 }

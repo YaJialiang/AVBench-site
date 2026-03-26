@@ -111,32 +111,26 @@
 <section id="figures" class="section section-dimensions">
   <div class="container is-max-desktop">
     <h2 class="title is-3 section-title">Paper Figures</h2>
-    <p class="section-note">All figures below are directly taken from the paper files.</p>
-    <div class="columns is-multiline">
-      <div class="column is-half">
-        <img class="paper-figure" src="./static/images/avbench/pipline-eccv3.png" alt="Pipeline overview">
-        <p class="figure-caption">Pipeline Overview</p>
-      </div>
-      <div class="column is-half">
-        <img class="paper-figure" src="./static/images/avbench/dataset_donut.png" alt="Data distribution normal hard">
-        <p class="figure-caption">Data Distribution (Normal/Hard)</p>
-      </div>
-      <div class="column is-half">
-        <img class="paper-figure" src="./static/images/avbench/bench_dimensions.png" alt="Hard negative taxonomy">
-        <p class="figure-caption">Hard Negative Taxonomy</p>
-      </div>
-      <div class="column is-half">
-        <img class="paper-figure" src="./static/images/avbench/model_accuracy.png" alt="Evaluator reliability">
-        <p class="figure-caption">Evaluator Reliability</p>
-      </div>
-      <div class="column is-half">
-        <img class="paper-figure" src="./static/images/avbench/radar_chart.png" alt="Radar chart of model performance">
-        <p class="figure-caption">Model Comparison Radar</p>
-      </div>
-      <div class="column is-half">
-        <img class="paper-figure" src="./static/images/avbench/pearson_correlation_figure.png" alt="Pearson correlation figure">
-        <p class="figure-caption">Human Correlation Analysis</p>
-      </div>
+    <p class="section-note">Overview figures directly adapted from the paper layout.</p>
+
+    <div class="paper-figure-block">
+      <img class="paper-figure" src="./static/images/avbench/pipline-eccv3.png" alt="Pipeline overview">
+      <p class="figure-caption"><strong>Figure 2.</strong> Overview of the AVBench construction pipeline, including evaluator training and benchmark prompt curation.</p>
+    </div>
+
+    <div class="paper-figure-block">
+      <img class="paper-figure" src="./static/images/avbench/dataset_donut.png" alt="Data distribution normal hard">
+      <p class="figure-caption"><strong>Figure 3.</strong> Data distribution of AVBench normal and hard subsets across language, speakers, interaction complexity, emotion, and shot type.</p>
+    </div>
+
+    <div class="paper-figure-block">
+      <img class="paper-figure" src="./static/images/avbench/bench_dimensions.png" alt="Hard negative taxonomy">
+      <p class="figure-caption"><strong>Figure 4.</strong> Taxonomy of multi-dimensional hard negatives for AV, AT, and VT alignment robustness.</p>
+    </div>
+
+    <div class="paper-figure-block">
+      <img class="paper-figure" src="./static/images/avbench/radar_chart.png" alt="Radar chart of model performance">
+      <p class="figure-caption"><strong>Figure 5.</strong> Radar comparison of representative T2AV models across AVBench key dimensions.</p>
     </div>
   </div>
 </section>
@@ -147,14 +141,19 @@
       <div class="column is-8">
         <h2 class="title is-3 section-title">Abstract</h2>
         <p>
-          Rapid advances in audio-video generation have produced high-fidelity outputs, but evaluation remains a bottleneck.
-          AVBench introduces a fully automated benchmark specialized for human-centric scenarios, with fine-grained metrics,
-          dedicated evaluators, and strong alignment with subjective human judgments.
+          Rapid advances in audio-video (AV) generation have enabled high-fidelity synthesis with synchronized sound,
+          particularly for human-related scenarios involving speech and interactions. Yet evaluation for AV generation
+          remains at an early stage, with only a few coarse-grained benchmarks for human-related scenarios and limited
+          preset evaluations with generic multimodal LLMs, often leading to inaccurate assessment of model capabilities.
+          AVBench is a fully automated benchmark tailored for human-centric AV generation and built on two key designs:
+          human-centric fine-grained metrics and specialized evaluators via preference-oriented training.
         </p>
         <p>
-          AVBench builds multi-dimensional hard negatives and trains specialized evaluators for AV/AT/VT consistency.
-          Instead of discrete labels, it outputs continuous confidence scores, which are useful for reliable ranking,
-          dataset filtering, and potential reward modeling.
+          AVBench integrates ten evaluation dimensions that cover visual quality, audio quality, and multi-level
+          cross-modal consistency. To train evaluators that can detect subtle mismatches, AVBench constructs large-scale
+          supervision by transforming real-world clips into diverse positive/negative pairs with controlled perturbations.
+          Instead of discrete textual judgments, AVBench derives continuous scores from model confidence on binary decisions,
+          yielding reliable automated evaluation and strong potential for data filtering and reward modeling.
         </p>
       </div>
       <div class="column is-4">
@@ -215,21 +214,21 @@
 <section id="suite" class="section section-overview">
   <div class="container is-max-desktop">
     <h2 class="title is-3 section-title">Comprehensive Evaluation Suite</h2>
-    <p class="section-note">AVBench evaluates 10 dimensions across cross-modal alignment and unimodal quality.</p>
-    <div class="columns is-multiline">
-      <div class="column is-half">
-        <article class="dimension-card">
-          <h3>Cross-Modal Alignment & Sync</h3>
-          <p>AV Consistency, AT Consistency, VT Consistency, Lip Sync Consistency.</p>
-        </article>
-      </div>
-      <div class="column is-half">
-        <article class="dimension-card">
-          <h3>Unimodal Generation Quality</h3>
-          <p>Speech Content, Speech Realism, Audio Quality, Audio Aesthetics, Video Quality, Video Aesthetics.</p>
-        </article>
-      </div>
-    </div>
+    <p class="section-note">AVBench evaluates the following 10 dimensions:</p>
+    <article class="dimension-card">
+      <ul>
+        <li>AV Consistency</li>
+        <li>AT Consistency</li>
+        <li>VT Consistency</li>
+        <li>Lip Sync Consistency</li>
+        <li>Speech Content Accuracy</li>
+        <li>Speech Realism</li>
+        <li>Audio Quality (NISQA)</li>
+        <li>Audio Aesthetics (Audiobox)</li>
+        <li>Video Quality (DOVER++)</li>
+        <li>Video Aesthetics</li>
+      </ul>
+    </article>
   </div>
 </section>
 
