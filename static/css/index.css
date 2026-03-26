@@ -227,10 +227,6 @@ li {
   background: #ffffff;
 }
 
-object.paper-figure {
-  height: 460px;
-}
-
 .figure-caption {
   margin-top: 0.65rem;
   font-size: 0.95rem;
@@ -259,7 +255,4 @@ object.paper-figure {
     font-size: 1rem;
   }
 
-  object.paper-figure {
-    height: 300px;
-  }
 }
