@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="T2AV-Bench: A holistic benchmark for text-audio-video alignment and generation quality.">
-  <meta name="keywords" content="Benchmark, Video Generation, Audio-Video Alignment, T2AV-Bench">
+  <meta name="description" content="AVBench: Human-Aligned and Automated Evaluation Benchmark for Audio-Video Generative Models.">
+  <meta name="keywords" content="AVBench, Audio-Video Generation, Benchmark, Human Alignment, ECCV 2026">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>T2AV-Bench | Holistic Video-Audio Benchmark</title>
+  <title>AVBench | Human-Aligned AV Evaluation Benchmark</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -22,20 +21,19 @@
 <nav class="navbar t2av-nav" role="navigation" aria-label="main navigation">
   <div class="container is-max-desktop">
     <div class="navbar-brand">
-      <a class="navbar-item brand-mark" href="#top">T2AV-Bench</a>
+      <a class="navbar-item brand-mark" href="#top">AVBench</a>
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="t2av-menu">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
-
     <div id="t2av-menu" class="navbar-menu">
       <div class="navbar-end">
         <a class="navbar-item" href="#overview">Overview</a>
-        <a class="navbar-item" href="#leaderboard">Leaderboard</a>
-        <a class="navbar-item" href="#dimensions">Dimensions</a>
-        <a class="navbar-item" href="#dataset">Dataset</a>
+        <a class="navbar-item" href="#contributions">Contributions</a>
+        <a class="navbar-item" href="#suite">Evaluation Suite</a>
+        <a class="navbar-item" href="#results">Main Results</a>
         <a class="navbar-item" href="#citation">Citation</a>
       </div>
     </div>
@@ -44,72 +42,76 @@
 
 <section id="top" class="hero hero-project">
   <div class="hero-body">
-    <div class="container is-max-desktop">
-      <p class="project-tag">Benchmark Project Page</p>
-      <h1 class="title project-title">T2AV-Bench: Holistic Benchmark for Text-Audio-Video Understanding</h1>
+    <div class="container is-max-desktop has-text-centered">
+      <p class="project-tag">ECCV 2026 Submission #430</p>
+      <h1 class="title project-title">AVBench: Human-Aligned and Automated Evaluation Benchmark for Audio-Video Generative Models</h1>
       <p class="project-subtitle">
-        Evaluate semantic alignment, temporal consistency, audiovisual coherence, and perceptual quality
-        in next-generation multimodal generation systems.
+        AVBench is a fully automated benchmark for human-centric text-to-audio-video generation.
+        It integrates ten fine-grained dimensions, specialized SFT evaluators, and continuous probabilistic scoring
+        that closely aligns with human perception.
       </p>
 
       <div class="project-authors">
-        <span>Yang Liu</span>
-        <span>Jianlin Yang</span>
-        <span>Contributors</span>
+        <span>Anonymous Authors</span>
       </div>
-
-      <div class="project-org">Affiliation / Lab Name</div>
+      <div class="project-org">Under Double-Blind Review</div>
 
       <div class="project-links">
-        <a class="button is-dark is-rounded" href="#" target="_blank" rel="noopener noreferrer">
-          <span class="icon"><i class="fas fa-file-pdf"></i></span>
-          <span>Paper</span>
-        </a>
-        <a class="button is-dark is-rounded" href="#" target="_blank" rel="noopener noreferrer">
-          <span class="icon"><i class="ai ai-arxiv"></i></span>
-          <span>arXiv</span>
-        </a>
-        <a class="button is-dark is-rounded" href="#" target="_blank" rel="noopener noreferrer">
+        <a class="button is-dark is-rounded" href="https://github.com/Yajialiang/AVBench" target="_blank" rel="noopener noreferrer">
           <span class="icon"><i class="fab fa-github"></i></span>
           <span>Code</span>
         </a>
-        <a class="button is-dark is-rounded" href="#leaderboard">
-          <span class="icon"><i class="fas fa-trophy"></i></span>
-          <span>Leaderboard</span>
+        <a class="button is-dark is-rounded" href="#results">
+          <span class="icon"><i class="fas fa-chart-bar"></i></span>
+          <span>Results</span>
+        </a>
+        <a class="button is-dark is-rounded" href="#citation">
+          <span class="icon"><i class="fas fa-quote-right"></i></span>
+          <span>Citation</span>
         </a>
       </div>
     </div>
   </div>
 </section>
 
+<section class="section section-figure">
+  <div class="container is-max-desktop">
+    <img class="paper-figure" src="./static/images/avbench/teaser.png" alt="AVBench teaser figure">
+    <p class="figure-caption">
+      Figure 1. AVBench overview: a multi-dimensional suite for cross-modal consistency,
+      audio quality, and video quality in human-centric scenarios.
+    </p>
+  </div>
+</section>
+
 <section id="overview" class="section section-overview">
   <div class="container is-max-desktop">
     <div class="columns is-variable is-6 is-vcentered">
-      <div class="column is-7">
-        <h2 class="title is-3 section-title">Overview</h2>
+      <div class="column is-8">
+        <h2 class="title is-3 section-title">Abstract</h2>
         <p>
-          T2AV-Bench is designed to stress-test multimodal models beyond single-score evaluation.
-          We organize benchmark tasks around orthogonal dimensions and aggregate them into a transparent,
-          diagnosis-friendly evaluation protocol.
+          Rapid advances in audio-video generation have enabled high-fidelity synthesis with synchronized sound,
+          yet existing benchmarks remain coarse-grained and rely on generic evaluators. AVBench introduces a fully automated,
+          human-centric benchmark with fine-grained metrics and specialized evaluators trained via preference-oriented hard negatives.
         </p>
         <p>
-          Instead of only asking whether outputs look good, we ask where and why systems fail:
-          semantic drift, audio mismatch, temporal instability, or content-level inconsistency.
+          Beyond binary judgments, AVBench outputs continuous confidence-based scores from Yes/No probabilities,
+          enabling more reliable assessment and opening opportunities for data filtering and reward modeling.
         </p>
       </div>
-      <div class="column is-5">
+      <div class="column is-4">
         <div class="metric-panel">
           <div class="metric-item">
-            <div class="metric-value">31k+</div>
-            <div class="metric-name">Evaluation Pairs</div>
+            <div class="metric-value">10</div>
+            <div class="metric-name">Evaluation Dimensions</div>
           </div>
           <div class="metric-item">
-            <div class="metric-value">12</div>
-            <div class="metric-name">Core Metrics</div>
+            <div class="metric-value">300K</div>
+            <div class="metric-name">SFT Training Samples</div>
           </div>
           <div class="metric-item">
-            <div class="metric-value">4</div>
-            <div class="metric-name">Benchmark Dimensions</div>
+            <div class="metric-value">470</div>
+            <div class="metric-name">Test Prompts (Normal + Hard)</div>
           </div>
         </div>
       </div>
@@ -117,105 +119,121 @@
   </div>
 </section>
 
-<section id="leaderboard" class="section section-leaderboard">
+<section id="contributions" class="section section-dimensions">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title">Leaderboard (Example)</h2>
-    <p class="section-note">Replace the rows below with your latest evaluation results.</p>
+    <h2 class="title is-3 section-title">Main Contributions</h2>
+    <div class="columns is-multiline">
+      <div class="column is-4">
+        <article class="dimension-card">
+          <h3>Human-Centric Metrics</h3>
+          <p>
+            AVBench extends traditional metrics with fine-grained human-centric indicators,
+            covering cross-modal consistency, speech realism, and perceptual quality.
+          </p>
+        </article>
+      </div>
+      <div class="column is-4">
+        <article class="dimension-card">
+          <h3>Specialized SFT Evaluators</h3>
+          <p>
+            The benchmark trains dedicated AV, AT, and VT evaluators on hard-negative data,
+            then produces continuous differentiable confidence scores.
+          </p>
+        </article>
+      </div>
+      <div class="column is-4">
+        <article class="dimension-card">
+          <h3>Automated + Human Aligned</h3>
+          <p>
+            A hierarchical Normal/Hard split evaluates robustness in realistic human scenarios,
+            with strong alignment to human preference judgments.
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section id="suite" class="section section-overview">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Comprehensive Evaluation Suite</h2>
+    <p class="section-note">AVBench evaluates 10 dimensions across cross-modal alignment and unimodal quality.</p>
+    <div class="columns is-multiline">
+      <div class="column is-half">
+        <article class="dimension-card">
+          <h3>Cross-Modal Alignment & Sync</h3>
+          <p>AV Consistency, AT Consistency, VT Consistency, Lip Sync Consistency.</p>
+        </article>
+      </div>
+      <div class="column is-half">
+        <article class="dimension-card">
+          <h3>Unimodal Generation Quality</h3>
+          <p>Speech Content, Speech Realism, Audio Quality, Audio Aesthetics, Video Quality, Video Aesthetics.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="results" class="section section-leaderboard">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Main Results (From Paper)</h2>
+    <p class="section-note">Quantitative results on AVBench Normal and Hard splits.</p>
+
+    <h3 class="title is-5 split-title">Normal Split</h3>
     <div class="table-wrap">
       <table class="table is-fullwidth leaderboard-table">
         <thead>
           <tr>
-            <th>Rank</th>
             <th>Model</th>
-            <th>Overall</th>
-            <th>Text-Video</th>
-            <th>Audio-Video</th>
-            <th>Temporal</th>
-            <th>Perceptual</th>
+            <th>AV</th>
+            <th>AT</th>
+            <th>VT</th>
+            <th>SyncNet</th>
+            <th>NISQA</th>
+            <th>DOVER++</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Qwen2.5-Omni-7B-Merged</td>
-            <td>79.4</td>
-            <td>82.1</td>
-            <td>78.0</td>
-            <td>76.6</td>
-            <td>80.9</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Qwen2-Audio-7B-Instruct</td>
-            <td>74.8</td>
-            <td>78.4</td>
-            <td>72.6</td>
-            <td>70.3</td>
-            <td>77.9</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>InternVideo Baseline</td>
-            <td>69.2</td>
-            <td>71.0</td>
-            <td>67.4</td>
-            <td>66.5</td>
-            <td>71.8</td>
-          </tr>
+          <tr><td>Sora 2</td><td>0.8713</td><td>0.5844</td><td>0.7599</td><td>4.9057</td><td>2.3784</td><td>60.0125</td></tr>
+          <tr><td>Veo 3 Fast</td><td>0.6924</td><td>0.5708</td><td>0.7235</td><td>6.5943</td><td>2.8191</td><td>69.2275</td></tr>
+          <tr><td>Wan 2.6</td><td>0.8207</td><td>0.5826</td><td>0.7556</td><td>4.5016</td><td>3.0289</td><td>71.6473</td></tr>
+          <tr><td>Kling 2.6</td><td>0.7626</td><td>0.5603</td><td>0.7501</td><td>8.1027</td><td>3.3141</td><td>65.6786</td></tr>
+          <tr><td>Seedance 1.5 Pro</td><td>0.6536</td><td>0.5764</td><td>0.7363</td><td>5.0146</td><td>3.6411</td><td>71.7205</td></tr>
         </tbody>
       </table>
     </div>
-  </div>
-</section>
 
-<section id="dimensions" class="section section-dimensions">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title">Evaluation Dimensions</h2>
-    <div class="columns is-multiline">
-      <div class="column is-half">
-        <article class="dimension-card">
-          <h3>Semantic Alignment</h3>
-          <p>Does generated content faithfully satisfy textual intent and key entities?</p>
-        </article>
-      </div>
-      <div class="column is-half">
-        <article class="dimension-card">
-          <h3>Audiovisual Consistency</h3>
-          <p>Are sound events synchronized and semantically coherent with visual content?</p>
-        </article>
-      </div>
-      <div class="column is-half">
-        <article class="dimension-card">
-          <h3>Temporal Stability</h3>
-          <p>How stable are motion, identity, and scene structure across frames?</p>
-        </article>
-      </div>
-      <div class="column is-half">
-        <article class="dimension-card">
-          <h3>Perceptual Quality</h3>
-          <p>Does the output maintain sharpness, naturalness, and low artifact rates?</p>
-        </article>
-      </div>
+    <h3 class="title is-5 split-title">Hard Split</h3>
+    <div class="table-wrap">
+      <table class="table is-fullwidth leaderboard-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>AV</th>
+            <th>AT</th>
+            <th>VT</th>
+            <th>SyncNet</th>
+            <th>NISQA</th>
+            <th>DOVER++</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Sora 2</td><td>0.9320</td><td>0.5573</td><td>0.7190</td><td>3.7932</td><td>2.0564</td><td>58.1538</td></tr>
+          <tr><td>Veo 3 Fast</td><td>0.7766</td><td>0.5130</td><td>0.6943</td><td>3.4535</td><td>2.3321</td><td>67.0833</td></tr>
+          <tr><td>Wan 2.6</td><td>0.8780</td><td>0.5517</td><td>0.7482</td><td>3.0488</td><td>3.0726</td><td>71.5229</td></tr>
+          <tr><td>Kling 2.6</td><td>0.8813</td><td>0.4970</td><td>0.7105</td><td>3.9844</td><td>3.2425</td><td>62.9994</td></tr>
+          <tr><td>Seedance 1.5 Pro</td><td>0.7409</td><td>0.5525</td><td>0.7398</td><td>3.3239</td><td>3.4093</td><td>69.4430</td></tr>
+        </tbody>
+      </table>
     </div>
-  </div>
-</section>
 
-<section id="dataset" class="section section-dataset">
-  <div class="container is-max-desktop">
-    <div class="columns is-variable is-6 is-vcentered">
-      <div class="column is-6">
-        <h2 class="title is-3 section-title">Dataset and Protocol</h2>
-        <ul>
-          <li>Large-scale prompts covering actions, scenes, and audio conditions.</li>
-          <li>Automatic and model-based evaluators with consistent preprocessing.</li>
-          <li>Detailed JSON outputs for reproducible diagnostics and ablation studies.</li>
-        </ul>
+    <div class="columns is-variable is-5 fig-row">
+      <div class="column is-half">
+        <img class="paper-figure" src="./static/images/avbench/radar_chart.png" alt="Radar chart of model performance">
       </div>
-      <div class="column is-6">
-        <video autoplay muted loop playsinline controls>
-          <source src="./static/videos/teaser.mp4" type="video/mp4">
-        </video>
+      <div class="column is-half">
+        <img class="paper-figure" src="./static/images/avbench/pearson_correlation_figure.png" alt="Pearson correlation figure">
       </div>
     </div>
   </div>
@@ -224,20 +242,17 @@
 <section id="citation" class="section section-citation">
   <div class="container is-max-desktop">
     <h2 class="title is-3 section-title">Citation</h2>
-    <pre><code>@article{t2avbench2026,
-  title   = {T2AV-Bench: Holistic Benchmark for Text-Audio-Video Understanding},
-  author  = {Your Team},
-  journal = {arXiv preprint arXiv:xxxx.xxxxx},
-  year    = {2026}
+<pre><code>@inproceedings{avbench2026,
+  title={AVBench: Human-Aligned and Automated Evaluation Benchmark for Audio-Video Generative Models},
+  booktitle={ECCV},
+  year={2026}
 }</code></pre>
   </div>
 </section>
 
 <footer class="footer project-footer">
   <div class="container is-max-desktop">
-    <p>
-      This website is built from an academic project-page template and adapted for benchmark presentation.
-    </p>
+    <p>AVBench Project Page. Data, code, and models are released via the official repository.</p>
   </div>
 </footer>
 </body>
