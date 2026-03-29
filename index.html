@@ -44,7 +44,6 @@
 <section id="top" class="hero hero-project">
   <div class="hero-body">
     <div class="container is-max-desktop has-text-centered">
-      <p class="project-tag">Human-Aligned Automated Benchmark</p>
       <h1 class="title project-title">AVBench: Human-Aligned and Automated Evaluation Benchmark for Audio-Video Generative Models</h1>
       <p class="project-subtitle">
         AVBench targets the core bottleneck of modern T2AV systems: existing metrics miss subtle but critical
@@ -94,45 +93,6 @@
   </div>
 </section>
 
-<section id="figures" class="section section-dimensions">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title">Benchmark Construction and Analysis Overview</h2>
-    <p class="section-note">Key visual summaries adapted from the paper to explain data curation, evaluator design, and model-level performance patterns.</p>
-
-    <div class="paper-figure-block">
-      <img class="paper-figure" src="./static/images/avbench/pipline-eccv3.png" alt="Pipeline overview">
-      <p class="figure-caption"><strong>Figure 2.</strong> <strong>Overview of the AVBench construction pipeline.</strong>
-      Our framework comprises two parallel workflows. The upper branch illustrates the training of the automated evaluators:
-      clips are densely annotated and then branched into positive and hard-negative samples for SFT.
-      The lower branch outlines benchmark prompt curation via heuristic sampling and strict filtering.
-      Together, robust SFT evaluators and high-quality prompts form a fully automated evaluation framework.</p>
-    </div>
-
-    <div class="paper-figure-block">
-      <img class="paper-figure" src="./static/images/avbench/dataset_donut.png" alt="Data distribution normal hard">
-      <p class="figure-caption"><strong>Figure 3.</strong> <strong>Data distribution of AVBench's normal and hard subsets.</strong>
-      The multi-layer chart illustrates dataset diversity over key human-centric attributes including language,
-      number of speakers, interaction complexity, emotional expression, and camera shot type.
-      The hard subset contains a higher ratio of challenging scenarios to rigorously test fine-grained cross-modal alignment.</p>
-    </div>
-
-    <div class="paper-figure-block">
-      <img class="paper-figure" src="./static/images/avbench/bench_dimensions.png" alt="Hard negative taxonomy">
-      <p class="figure-caption"><strong>Figure 4.</strong> <strong>Taxonomy of multi-dimensional hard negatives in AVBench.</strong>
-      The chart shows the comprehensive distribution of constructed negatives across major alignment axes.
-      Rather than random perturbations, these dimensions are explicitly designed to target common T2AV failure modes,
-      ensuring robust and fine-grained evaluation of cross-modal consistency.</p>
-    </div>
-
-    <div class="paper-figure-block">
-      <img class="paper-figure" src="./static/images/avbench/radar_chart.png" alt="Radar chart of model performance">
-      <p class="figure-caption"><strong>Figure 5.</strong> <strong>Holistic model performance.</strong>
-      Radar comparison across AVBench dimensions reveals complementary strengths and weaknesses among representative T2AV systems,
-      highlighting the persistent gap between technical quality and strict cross-modal instruction fidelity.</p>
-    </div>
-  </div>
-</section>
-
 <section id="overview" class="section section-overview">
   <div class="container is-max-desktop">
     <div class="columns is-variable is-6 is-vcentered">
@@ -172,6 +132,45 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="figures" class="section section-dimensions">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Benchmark Construction and Analysis Overview</h2>
+    <p class="section-note">Key visual summaries adapted from the paper to explain data curation, evaluator design, and model-level performance patterns.</p>
+
+    <div class="paper-figure-block">
+      <img class="paper-figure" src="./static/images/avbench/pipline-eccv3.png" alt="Pipeline overview">
+      <p class="figure-caption"><strong>Figure 2.</strong> <strong>Overview of the AVBench construction pipeline.</strong>
+      Our framework comprises two parallel workflows. The upper branch illustrates the training of the automated evaluators:
+      clips are densely annotated and then branched into positive and hard-negative samples for SFT.
+      The lower branch outlines benchmark prompt curation via heuristic sampling and strict filtering.
+      Together, robust SFT evaluators and high-quality prompts form a fully automated evaluation framework.</p>
+    </div>
+
+    <div class="paper-figure-block">
+      <img class="paper-figure" src="./static/images/avbench/dataset_donut.png" alt="Data distribution normal hard">
+      <p class="figure-caption"><strong>Figure 3.</strong> <strong>Data distribution of AVBench's normal and hard subsets.</strong>
+      The multi-layer chart illustrates dataset diversity over key human-centric attributes including language,
+      number of speakers, interaction complexity, emotional expression, and camera shot type.
+      The hard subset contains a higher ratio of challenging scenarios to rigorously test fine-grained cross-modal alignment.</p>
+    </div>
+
+    <div class="paper-figure-block">
+      <img class="paper-figure" src="./static/images/avbench/bench_dimensions.png" alt="Hard negative taxonomy">
+      <p class="figure-caption"><strong>Figure 4.</strong> <strong>Taxonomy of multi-dimensional hard negatives in AVBench.</strong>
+      The chart shows the comprehensive distribution of constructed negatives across major alignment axes.
+      Rather than random perturbations, these dimensions are explicitly designed to target common T2AV failure modes,
+      ensuring robust and fine-grained evaluation of cross-modal consistency.</p>
+    </div>
+
+    <div class="paper-figure-block">
+      <img class="paper-figure" src="./static/images/avbench/radar_chart.png" alt="Radar chart of model performance">
+      <p class="figure-caption"><strong>Figure 5.</strong> <strong>Holistic model performance.</strong>
+      Radar comparison across AVBench dimensions reveals complementary strengths and weaknesses among representative T2AV systems,
+      highlighting the persistent gap between technical quality and strict cross-modal instruction fidelity.</p>
     </div>
   </div>
 </section>
